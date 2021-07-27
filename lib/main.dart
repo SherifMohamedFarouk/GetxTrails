@@ -12,53 +12,50 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Navgation",
-      initialRoute: "/",
-      defaultTransition: Transition.zoom,
-      getPages: [
-        GetPage(name: "/", page:() =>  MyApp()),
-        GetPage(name: "home",page: () => Home(),),
-        GetPage(name: "screen/:someValue",page:() => NextScreen(),transition: Transition.leftToRight,)
-      ],
-      home: MyHome ()
-    );
+        title: "Navgation",
+        initialRoute: "/",
+        defaultTransition: Transition.zoom,
+        home: MyHome());
   }
 }
 
 class MyHome extends StatelessWidget {
-  var count = 0.obs;
-  var student = Student()  ;
-  // var count =RxInt(0);
-  Controller controller = Get.put(Controller());
-
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Navgation"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Obx(()=>Text("${controller.student.name}")),
-            // ignore: deprecated_member_use
-            ElevatedButton(child: Text("count ++"),
-              onPressed: () {
-               // Get.toNamed("home?channel=this is home&content=getx",);
-                controller.caps();
-              },
-              style:ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.grey),
-              ),
-            ),
+     return Scaffold(
+       appBar: AppBar(
+         title: Text("dialog trail"),
+       ),
+       body: Center(
+         child: Container(
+           height: MediaQuery.of(context).size.height,
+           width: MediaQuery.of(context).size.width,
+           child: Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             crossAxisAlignment: CrossAxisAlignment.center,
+             children: [
+               ElevatedButton(onPressed: (){
+                 Get.defaultDialog(
+                   content: Row(
+                     children: [
+                       CircularProgressIndicator()
+                       ,
+                       SizedBox(width: 16.0,),
+                       Expanded(child: Text("loadding)"))
 
-          ],
+                     ],
+                   )
+                 );
+               }, child:Text("show dialog"),
 
-        ),
-      ),
-    );
+
+               )
+             ],
+           ),
+         ),
+       ),
+     );
   }
-}
+
+  }
+

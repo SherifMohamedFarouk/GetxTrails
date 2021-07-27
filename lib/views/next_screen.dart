@@ -7,15 +7,18 @@ class NextScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("NextScrren"),),
+      appBar: AppBar(title: Text("NextScrrern"),),
       body: Container(
         child: ElevatedButton(child: Text("${Get.parameters['someValue']}"),
           onPressed: () {
+
             Get.back();
           },
-        ) ,
+        ),
 
       ),
     );
   }
 }
+
+
